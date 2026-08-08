@@ -2,9 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { ShieldAlert, ArrowUpRight, Cpu } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Project } from "../data";
 import { SpotlightCard } from "./SpotlightCard";
+import { DecryptText } from "./DecryptText";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -21,9 +22,9 @@ export function ProjectCard({ project }: { project: Project }) {
             </span>
           </div>
 
-          {/* Title */}
+          {/* Title with decrypt hover effect */}
           <h3 className="text-lg font-bold text-white group-hover:text-[#27E0FF] transition-colors flex items-center justify-between gap-2">
-            <span>{project.title}</span>
+            <DecryptText text={project.title} />
             <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
           </h3>
 

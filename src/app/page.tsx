@@ -2,22 +2,22 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Terminal } from "lucide-react";
+import { ArrowRight, Terminal, Shield } from "lucide-react";
 import { SpotlightCard } from "./components/SpotlightCard";
 import { CyberOrb } from "./components/CyberOrb";
 import { ProjectCard } from "./components/ProjectCard";
 import { SectionHeader } from "./components/SectionHeader";
+import { CountUp } from "./components/CountUp";
 import { portfolioProjects, roles, securityRecognitions } from "./data";
-import { motion } from "framer-motion";
 
 export default function HomePage() {
   const marqueeItems = [
-    "VULNERABILITY RECONNAISSANCE",
-    "SECURE SYSTEM ARCHITECTURE",
-    "RESPONSIBLE VULNERABILITY DISCLOSURE",
-    "LOCAL-FIRST ENCRYPTED UTILITIES",
-    "APPLICATION PENETRATION AUDITS",
-    "MICROSERVICE CONTAINER SECURITY"
+    "OSCP CERTIFIED",
+    "NASA VDP APPRECIATION LOP",
+    "ESDM-CSIRT RECOGNIZED",
+    "KEMENTERIAN PU-CSIRT VALIDATED",
+    "BMKG-CSIRT CONTRIBUTOR",
+    "CRES VAULT COMPLIANT"
   ];
 
   return (
@@ -63,33 +63,60 @@ export default function HomePage() {
         <div className="flex-1 flex justify-center lg:justify-end items-center">
           <CyberOrb />
         </div>
-
-        {/* Decorative Ambient Floating Panel widgets */}
-        <div className="absolute right-12 bottom-6 hidden xl:block glass-panel-2 rounded-lg p-3 border border-white/10 font-mono text-[9px] text-[#27E0FF] space-y-1 z-10 max-w-[150px]">
-          <div className="flex items-center justify-between text-white/50 border-b border-white/5 pb-1 mb-1">
-            <span>ACTIVE SCAN</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          </div>
-          <div>IP: 127.0.0.1</div>
-          <div>PORT: 443</div>
-          <div className="text-emerald-400 font-semibold">STATUS: SECURE</div>
-        </div>
       </section>
 
-      {/* 2. INFINITE CAROUSEL (MARQUEE) - PURE CSS LOOP & PAUSE ON HOVER */}
-      <section className="relative overflow-hidden w-full py-4 border-y border-white/5 bg-[#05070B]/50 font-mono text-xs text-gray-500 marquee-container">
+      {/* 2. INFINITE CAROUSEL (MARQUEE) - PURE CSS CERTIFICATION VIBE */}
+      <section className="relative overflow-hidden w-full py-4 border-y border-white/5 bg-[#05070B]/50 font-mono text-xs text-gray-400 marquee-container">
         <div className="marquee-track flex gap-12">
-          {/* Double content array to allow seamless continuous wrap */}
           {[...marqueeItems, ...marqueeItems].map((item, idx) => (
-            <span key={idx} className="flex items-center gap-2 shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#27E0FF]"></span>
+            <span key={idx} className="flex items-center gap-2.5 shrink-0 text-[10px] tracking-widest text-[#27E0FF]">
+              <Shield className="w-3.5 h-3.5" />
               <span>{item}</span>
             </span>
           ))}
         </div>
       </section>
 
-      {/* 3. FEATURED WORK SECTION */}
+      {/* 3. QUICK STATS COUNT-UP SECTION */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 text-center space-y-2">
+          <div className="text-3xl font-extrabold text-white font-mono">
+            <CountUp end={20} />+
+          </div>
+          <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+            PROJECTS DELIVERED
+          </div>
+        </SpotlightCard>
+
+        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 text-center space-y-2">
+          <div className="text-3xl font-extrabold text-white font-mono">
+            <CountUp end={12} />+
+          </div>
+          <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+            CSIRT ACKNOWLEDGEMENTS
+          </div>
+        </SpotlightCard>
+
+        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 text-center space-y-2">
+          <div className="text-3xl font-extrabold text-white font-mono">
+            <CountUp end={3} />+
+          </div>
+          <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+            YEARS RESEARCH EXPERIENCE
+          </div>
+        </SpotlightCard>
+
+        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 text-center space-y-2">
+          <div className="text-3xl font-extrabold text-[#27E0FF] font-mono">
+            100%
+          </div>
+          <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+            RESPONSIBLE DISCLOSURE
+          </div>
+        </SpotlightCard>
+      </section>
+
+      {/* 4. FEATURED WORK SECTION */}
       <section>
         <SectionHeader
           label="FEATURED CASE STUDIES"
@@ -105,7 +132,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. EXPERIENCE SNAPSHOT */}
+      {/* 5. EXPERIENCE SNAPSHOT */}
       <section className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12">
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#27E0FF] uppercase">
@@ -150,7 +177,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. VERIFIED SECURITY RECOGNITION ACKNOWLEDGEMENT */}
+      {/* 6. VERIFIED SECURITY RECOGNITION ACKNOWLEDGEMENT */}
       <section className="glass-panel-2 rounded-3xl p-8 md:p-12 relative overflow-hidden border border-white/5">
         <div className="absolute inset-0 technical-grid opacity-10 pointer-events-none" />
         
@@ -186,7 +213,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. CONTACT CTA */}
+      {/* 7. CONTACT CTA */}
       <section className="text-center py-12 relative">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
           <div className="w-[300px] h-[300px] rounded-full glow-bubble-blue filter blur-[80px]" />

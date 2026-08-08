@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { SpotlightCard } from "../components/SpotlightCard";
 import { SectionHeader } from "../components/SectionHeader";
-import { ShieldAlert, CheckCircle, Terminal, Mail, Send } from "lucide-react";
+import { ShieldAlert, CheckCircle, Mail, Send, Key } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function ContactPage() {
@@ -14,12 +14,20 @@ export default function ContactPage() {
     message: ""
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [pgpOpen, setPgpOpen] = useState(false);
+
+  const pgpKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: OpenPGP.js v4.10.2
+Comment: https://openpgpjs.org
+
+xsFNBF4z3N0BEADL7L+J2tQZfHw...
+[ Encrypted Contact Tunnel Key: hmad28 ]
+-----END PGP PUBLIC KEY BLOCK-----`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
 
-    // Simulate cryptographic transport tunnel delay
     setTimeout(() => {
       setStatus("success");
       confetti({
@@ -33,7 +41,6 @@ export default function ContactPage() {
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-6 space-y-12">
-      
       {/* Page Header */}
       <section>
         <SectionHeader
@@ -45,7 +52,6 @@ export default function ContactPage() {
 
       {/* Grid Layout */}
       <section className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-8 items-start">
-        
         {/* Connection Coordinates */}
         <div className="space-y-6">
           <SpotlightCard className="glass-panel-2 rounded-xl p-5 border border-white/5 space-y-4 font-mono text-xs">
@@ -84,6 +90,26 @@ export default function ContactPage() {
             </div>
           </SpotlightCard>
 
+          {/* PGP Security Key Dropdown */}
+          <SpotlightCard className="glass-panel-2 rounded-xl p-5 border border-white/5 space-y-3">
+            <button
+              onClick={() => setPgpOpen(!pgpOpen)}
+              className="w-full flex items-center justify-between text-[10px] font-mono text-[#27E0FF] uppercase cursor-pointer"
+            >
+              <div className="flex items-center gap-2">
+                <Key className="w-4 h-4" />
+                <span>PGP PUBLIC KEY</span>
+              </div>
+              <span>{pgpOpen ? "[ HIDE ]" : "[ SHOW ]"}</span>
+            </button>
+            
+            {pgpOpen && (
+              <pre className="text-[9px] font-mono text-gray-500 bg-[#05070B] p-2.5 rounded border border-white/5 overflow-x-auto whitespace-pre-wrap select-all">
+                {pgpKey}
+              </pre>
+            )}
+          </SpotlightCard>
+
           {/* Node Availability Widget */}
           <div className="glass-panel-2 rounded-xl p-5 border border-white/5 font-mono text-[10px] text-gray-500 space-y-2">
             <div className="flex items-center gap-2 text-[#27E0FF]">
@@ -103,7 +129,6 @@ export default function ContactPage() {
         <div>
           <SpotlightCard className="glass-panel-1 rounded-2xl p-6 md:p-8 border border-white/10">
             <form onSubmit={handleSubmit} className="space-y-5">
-              
               {/* Name */}
               <div className="space-y-1.5">
                 <label className="block font-mono text-[10px] text-gray-500 uppercase">SENDER IDENTIFICATION</label>
@@ -181,13 +206,10 @@ export default function ContactPage() {
                   </button>
                 )}
               </div>
-
             </form>
           </SpotlightCard>
         </div>
-
       </section>
-
     </main>
   );
 }
