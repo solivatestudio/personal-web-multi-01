@@ -1,91 +1,134 @@
 @import "tailwindcss";
 
 :root {
-  --black-01: #080808;
-  --black-02: #0D0D0C;
-  --panel: #11110F;
-  --panel-high: #171713;
+  --paper-bone: #F4F1E8;
+  --warm-white: #FAF8F1;
+  --ink: #0A0A0A;
+  --charcoal: #171717;
   
-  --text-primary: #D8D6CC;
-  --text-secondary: #8D8B82;
-  --text-muted: #55544E;
-
-  --accent-amber: #D7A94B;
-  --accent-amber-muted: #B98A3D;
-  --signal-red: #B94A3D;
+  --acid-lime: #B7F000;
+  --signal-orange: #FF552D;
+  --utility-blue: #3458FF;
+  --warning-yellow: #FFD83D;
+  --critical-red: #E83D2F;
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
+
+  --bg-primary: var(--paper-bone);
+  --bg-surface: var(--warm-white);
+  --text-main: var(--ink);
+  --border-color: var(--ink);
+}
+
+.dark {
+  --bg-primary: #090909;
+  --bg-surface: #111111;
+  --text-main: #ECE9DF;
+  --border-color: #ECE9DF;
+  --ink: #ECE9DF;
 }
 
 body {
-  background-color: var(--black-01);
-  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
   font-family: var(--font-sans);
   overflow-x: hidden;
   position: relative;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Subtle Technical Workstation Grid Overlay */
-.workstation-grid {
+/* Neo-Brutalist Engineering Paper Grid Overlay */
+.brutalist-grid {
   background-image: 
-    linear-gradient(rgba(216, 214, 204, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(216, 214, 204, 0.02) 1px, transparent 1px);
-  background-size: 64px 64px;
-  background-position: center;
+    linear-gradient(rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Subtle Horizontal Scanline Emitter */
-@keyframes scanline-sweep {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+.dark .brutalist-grid {
+  background-image: 
+    linear-gradient(rgba(236, 233, 223, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(236, 233, 223, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-.scanline-hud::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(215, 169, 75, 0.08), transparent);
-  pointer-events: none;
-  z-index: 40;
-  animation: scanline-sweep 10s linear infinite;
+/* Neo-Brutalist Border Utility */
+.brutalist-border {
+  border: 2px solid var(--border-color);
 }
 
-/* Technical Industrial Borders & Cut Corners */
-.hud-border {
-  border: 1px solid rgba(141, 139, 130, 0.15);
+.brutalist-border-thick {
+  border: 3px solid var(--border-color);
 }
 
-.hud-panel {
-  background-color: var(--panel);
-  border: 1px solid rgba(141, 139, 130, 0.12);
-  border-radius: 2px;
+/* Neo-Brutalist Offset Hard Shadows */
+.brutalist-shadow {
+  box-shadow: 4px 4px 0px var(--border-color);
 }
 
-.hud-panel-high {
-  background-color: var(--panel-high);
-  border: 1px solid rgba(215, 169, 75, 0.25);
-  border-radius: 2px;
+.brutalist-shadow-lg {
+  box-shadow: 6px 6px 0px var(--border-color);
 }
 
-.hud-glass-panel {
-  background: rgba(17, 17, 15, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(216, 214, 204, 0.08);
-  border-radius: 2px;
+.brutalist-shadow-hero {
+  box-shadow: 8px 8px 0px var(--border-color);
 }
 
-/* Monospace Technical Labels */
-.mono-hud {
+/* Interactive Neo-Brutalist Button Hover Press */
+.brutalist-btn {
+  border: 2px solid var(--border-color);
+  box-shadow: 4px 4px 0px var(--border-color);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brutalist-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.brutalist-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px var(--border-color);
+}
+
+/* Neo-Brutalist Card Hover */
+.brutalist-card {
+  border: 2px solid var(--border-color);
+  box-shadow: 6px 6px 0px var(--border-color);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brutalist-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0px var(--border-color);
+}
+
+/* Custom Brutalist Sticker Badge */
+.brutalist-sticker {
+  border: 2px solid var(--border-color);
+  box-shadow: 3px 3px 0px var(--border-color);
   font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+}
+
+/* Brutalist Glassmorphism Special Overlay (5-10% usage only) */
+.brutalist-glass {
+  background: rgba(244, 241, 232, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--border-color);
+}
+
+.dark .brutalist-glass {
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--border-color);
 }
 
 /* Infinite Marquee CSS-only loop */
@@ -97,17 +140,17 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 25s linear infinite;
 }
 
 .marquee-container:hover .marquee-track {
   animation-play-state: paused;
 }
 
-/* Fluid Typography Clamp Rules */
-.text-display-giant {
-  font-size: clamp(3.5rem, 12vw, 12rem);
-  line-height: 0.88;
-  letter-spacing: -0.05em;
+/* Display Typography Clamp */
+.text-display-hero {
+  font-size: clamp(2.5rem, 7vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   font-weight: 900;
 }

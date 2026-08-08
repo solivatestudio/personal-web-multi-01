@@ -1,110 +1,85 @@
 import React from "react";
 import type { Metadata } from "next";
 import { roles, securityRecognitions } from "../data";
-import { Terminal, Shield, CheckCircle } from "lucide-react";
+import { Shield } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Personnel File // Hammad Matt",
-  description: "Personnel File for Hammad Matt - Tech Lead, Systems Architect, and Ethical Hacker.",
+  title: "Personnel Profile // Hammad Matt",
+  description: "Personnel Profile for Hammad Matt - Tech Lead, Systems Architect, and Ethical Hacker.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="p-6 md:p-12 space-y-16 font-mono text-xs workstation-grid">
+    <div className="p-6 md:p-12 space-y-16 font-mono text-xs">
       
-      {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#8D8B82]/20 pb-3 text-xs">
-        <span className="text-[#D7A94B] font-bold">ID.01 // PERSONNEL FILE</span>
-        <span className="text-[#8D8B82]">CLASSIFICATION: UNRESTRICTED</span>
+      <div className="flex items-center justify-between border-b-2 border-black dark:border-white pb-3">
+        <span className="bg-[#B7F000] text-black px-2 py-0.5 font-bold">_PROFILE</span>
+        <span className="font-bold">PERSONNEL FILE</span>
       </div>
 
-      {/* Grid Personnel File Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Dossier Card (4 Cols) */}
-        <div className="lg:col-span-4 border border-[#8D8B82]/20 bg-[#11110F] p-6 space-y-6">
-          
-          <div className="relative aspect-square w-full bg-[#080808] border border-[#8D8B82]/20 flex flex-col items-center justify-center p-6 text-center space-y-3">
-            <Shield className="w-12 h-12 text-[#D7A94B]" />
-            <span className="text-[10px] text-[#D8D6CC] tracking-widest">[ TARGET_FRAME // PORTRAIT ]</span>
-            <span className="text-[9px] text-[#55544E]">ID: HM-2026-ID</span>
+        {/* Left ID Card (4 Cols) */}
+        <div className="lg:col-span-4 border-2 border-black dark:border-white bg-[#FAF8F1] dark:bg-[#111111] p-6 space-y-6 brutalist-shadow">
+          <div className="aspect-square bg-black text-[#B7F000] border-2 border-black flex flex-col items-center justify-center p-6 text-center space-y-3">
+            <Shield className="w-16 h-16 text-[#B7F000]" />
+            <span className="text-xs font-bold">[ TARGET_FRAME // PORTRAIT ]</span>
+            <span className="text-[10px] text-gray-400">ID: HM-2026-ID</span>
           </div>
 
-          <div className="space-y-2 text-[10px] border-t border-[#8D8B82]/15 pt-4 text-[#8D8B82]">
+          <div className="space-y-2 text-xs border-t-2 border-black dark:border-white pt-4 text-black dark:text-white font-bold">
             <div className="flex justify-between">
-              <span>SUBJECT:</span>
-              <span className="text-[#D8D6CC] font-bold">HAMMAD MATT</span>
+              <span>NAME:</span>
+              <span>HAMMAD MATT</span>
             </div>
             <div className="flex justify-between">
-              <span>PRIMARY ROLE:</span>
-              <span className="text-[#D7A94B]">ETHICAL HACKER / TECH LEAD</span>
+              <span>ROLE:</span>
+              <span className="text-[#FF552D]">ETHICAL HACKER</span>
             </div>
             <div className="flex justify-between">
-              <span>STATION:</span>
-              <span className="text-[#D8D6CC]">JAKARTA, ID</span>
-            </div>
-            <div className="flex justify-between">
-              <span>STATUS:</span>
-              <span className="text-[#77E6A1]">ACTIVE / AVAILABLE</span>
+              <span>LOCATION:</span>
+              <span>JAKARTA, ID</span>
             </div>
           </div>
         </div>
 
-        {/* Right Biographical Record & Capabilities (8 Cols) */}
+        {/* Right Bio & Matrix (8 Cols) */}
         <div className="lg:col-span-8 space-y-8">
           
-          {/* Bio Text */}
-          <div className="space-y-4 border border-[#8D8B82]/15 bg-[#11110F] p-6">
-            <div className="text-[#D7A94B] font-bold text-sm border-b border-[#8D8B82]/15 pb-2">
+          <div className="border-2 border-black dark:border-white bg-[#FAF8F1] dark:bg-[#111111] p-6 space-y-4 brutalist-shadow font-sans">
+            <h2 className="text-lg font-black text-black dark:text-white font-mono border-b-2 border-black pb-2">
               BIOGRAPHICAL RECORD
-            </div>
-            <div className="space-y-3 text-xs text-[#8D8B82] leading-relaxed font-sans">
-              <p>
-                Fullstack developer and independent security researcher based in Jakarta. I construct production backends that handle transactional loads, and build automated scanning utilities to audit their security boundaries.
-              </p>
-              <p>
-                Currently, as Systems Owner for a national Travel & Logistics business group, I architect a monorepo digital ecosystem that centralizes Umrah pilgrim records, airport handling, and finance pipelines into transactional PostgreSQL.
-              </p>
-              <p>
-                Simultaneously, I serve as Tech Lead at Solivate Studio, directing tech stack selection, code reviews, and penetration testing for SaaS applications and APIs.
-              </p>
-            </div>
-          </div>
-
-          {/* Capability Index Matrix */}
-          <div className="space-y-4 border border-[#8D8B82]/15 bg-[#11110F] p-6">
-            <div className="text-[#D7A94B] font-bold text-sm border-b border-[#8D8B82]/15 pb-2">
-              CORE CAPABILITY INDEX
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-3 bg-[#080808] border border-[#8D8B82]/15 flex justify-between items-center">
-                <span>WEB APPLICATION SECURITY</span>
-                <span className="text-[#77E6A1] font-bold">[ACTIVE]</span>
-              </div>
-              <div className="p-3 bg-[#080808] border border-[#8D8B82]/15 flex justify-between items-center">
-                <span>API PENETRATION TESTING</span>
-                <span className="text-[#77E6A1] font-bold">[ACTIVE]</span>
-              </div>
-              <div className="p-3 bg-[#080808] border border-[#8D8B82]/15 flex justify-between items-center">
-                <span>OSINT RECONNAISSANCE</span>
-                <span className="text-[#77E6A1] font-bold">[ACTIVE]</span>
-              </div>
-              <div className="p-3 bg-[#080808] border border-[#8D8B82]/15 flex justify-between items-center">
-                <span>SYSTEM UTILITIES (RUST/GO)</span>
-                <span className="text-[#77E6A1] font-bold">[ACTIVE]</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Educational Background */}
-          <div className="space-y-3 border border-[#8D8B82]/15 bg-[#11110F] p-6">
-            <div className="text-[#D7A94B] font-bold text-sm border-b border-[#8D8B82]/15 pb-2">
-              INDEPENDENT CURRICULUM // PAKET C
-            </div>
-            <p className="text-xs text-[#8D8B82] leading-relaxed font-sans">
-              Selected Indonesia's Paket C equivalency pathway to focus directly on an intensive self-directed syllabus covering systems programming, backend engineering, and web vulnerability analysis while taking professional client projects.
+            </h2>
+            <p className="text-xs text-gray-800 dark:text-gray-200 leading-relaxed">
+              Fullstack developer and independent security researcher based in Jakarta. I construct production backends that handle transactional loads, and build automated scanning utilities to audit their security boundaries.
             </p>
+            <p className="text-xs text-gray-800 dark:text-gray-200 leading-relaxed">
+              Currently, as Systems Owner for a national Travel & Logistics business group, I architect a monorepo digital ecosystem that centralizes Umrah pilgrim records, airport handling, and finance pipelines into transactional PostgreSQL.
+            </p>
+          </div>
+
+          <div className="border-2 border-black dark:border-white bg-[#FAF8F1] dark:bg-[#111111] p-6 space-y-4 brutalist-shadow font-mono">
+            <h2 className="text-sm font-bold text-black dark:text-white border-b-2 border-black pb-2">
+              CAPABILITY MATRIX
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-bold">
+              <div className="p-3 bg-white dark:bg-black border-2 border-black dark:border-white flex justify-between">
+                <span>WEB APPSEC</span>
+                <span className="text-[#B7F000] bg-black px-1.5">[ACTIVE]</span>
+              </div>
+              <div className="p-3 bg-white dark:bg-black border-2 border-black dark:border-white flex justify-between">
+                <span>API PENTESTING</span>
+                <span className="text-[#B7F000] bg-black px-1.5">[ACTIVE]</span>
+              </div>
+              <div className="p-3 bg-white dark:bg-black border-2 border-black dark:border-white flex justify-between">
+                <span>OSINT RECON</span>
+                <span className="text-[#B7F000] bg-black px-1.5">[ACTIVE]</span>
+              </div>
+              <div className="p-3 bg-white dark:bg-black border-2 border-black dark:border-white flex justify-between">
+                <span>SYSTEM UTILITIES (RUST)</span>
+                <span className="text-[#B7F000] bg-black px-1.5">[ACTIVE]</span>
+              </div>
+            </div>
           </div>
 
         </div>

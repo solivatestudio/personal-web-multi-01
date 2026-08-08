@@ -5,22 +5,21 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Case Files & Active Operations",
+  title: "Case Files & Project Archive",
   description: "Browse case files and active security operations engineered by Hammad Matt.",
 };
 
 export default function PortfolioPage() {
   return (
-    <div className="p-6 md:p-12 space-y-12 font-mono text-xs workstation-grid">
+    <div className="p-6 md:p-12 space-y-12 font-mono text-xs">
       
-      <div className="flex items-center justify-between border-b border-[#8D8B82]/20 pb-3">
-        <span className="text-[#D7A94B] font-bold">OPS.02 // CASE FILES ARCHIVE</span>
-        <span className="text-[#8D8B82]">TOTAL RECORDS: 0{allProjects.length}</span>
+      <div className="flex items-center justify-between border-b-2 border-black dark:border-white pb-3">
+        <span className="bg-[#B7F000] text-black px-2 py-0.5 font-bold">_PROJECTS</span>
+        <span className="font-bold">OPERATIONS ARCHIVE</span>
       </div>
 
-      {/* Case Files Table List */}
-      <div className="border border-[#8D8B82]/15 bg-[#11110F] divide-y divide-[#8D8B82]/15">
-        <div className="grid grid-cols-12 p-3.5 text-[9px] text-[#55544E] uppercase tracking-wider font-bold bg-[#171713]">
+      <div className="border-2 border-black dark:border-white bg-[#FAF8F1] dark:bg-[#111111] divide-y-2 divide-black dark:divide-white brutalist-shadow">
+        <div className="grid grid-cols-12 p-3.5 text-[10px] bg-black text-white font-bold uppercase tracking-wider">
           <span className="col-span-2">FILE ID</span>
           <span className="col-span-4">SUBJECT / OPERATION</span>
           <span className="col-span-3">CATEGORY</span>
@@ -31,17 +30,17 @@ export default function PortfolioPage() {
         {allProjects.map((project) => (
           <div
             key={project.id}
-            className="grid grid-cols-12 p-4 items-center hover:bg-[#171713] transition-colors group text-[#8D8B82] hover:text-[#D8D6CC]"
+            className="grid grid-cols-12 p-4 items-center hover:bg-[#B7F000] hover:text-black transition-colors group font-bold"
           >
-            <span className="col-span-2 text-[#D7A94B] font-bold">CASE-00{project.id}</span>
-            <span className="col-span-4 text-[#D8D6CC] font-bold text-sm font-sans">{project.title}</span>
+            <span className="col-span-2">OP-00{project.id}</span>
+            <span className="col-span-4 text-sm font-sans">{project.title}</span>
             <span className="col-span-3 text-[10px]">{project.category}</span>
             <span className="col-span-2 text-[10px]">{project.projectDate.split("-")[0]}</span>
             <div className="col-span-1 text-right">
               <Link
                 href={`/portfolio/${project.slug}`}
                 data-cursor="OPEN"
-                className="inline-flex items-center text-[#D7A94B] hover:text-[#D8D6CC]"
+                className="inline-flex items-center text-black dark:text-white group-hover:text-black"
               >
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
