@@ -102,6 +102,22 @@ body {
   background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
 }
 
+/* Infinite Marquee CSS-only loop */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
 /* Scanline animation */
 @keyframes scanline {
   0% {

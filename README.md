@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# [ H//SEC ] — Premium Cyber Security Glassmorphism Interface
 
-## Getting Started
+A luxury, high-fidelity personal portfolio and security intelligence dossier built for **Hammad Matt (Matt28)**, Tech Lead and Security Researcher.
 
-First, run the development server:
+Designed around a modern security operations interface aesthetic, this platform highlights verified security disclosures, systems programming utilities, and application penetration audit metrics.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛡️ Design Philosophy & Aesthetics
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project avoids matrix rain clichés or neon hacker templates, opting instead for a **75% luxury minimalism, 15% cyber intelligence interface, and 10% futuristic interaction** ratio:
+*   **Layered Glassmorphism**: Tailored backdrop blurs, luminous borders, and inset box-shadows.
+*   **Modular Bento Grid**: Structured dashboard card coordinates with dynamic cursor lighting.
+*   **Dark Premium Palette**: Base background color `#060912` overlaid with deep blue, electric cyan, and indigo glow bubbles.
+*   **Interactive Cyber Orb**: Realtime canvas-rendered topological networking node sphere.
+*   **Developer CLI (CTRL + K)**: Integrated command console interface backing diagnostic operations.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Stack & Engineering Manifest
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   **Framework**: Next.js 16 (App Router) & React 19
+*   **Styling**: Tailwind CSS & Vanilla HSL gradients
+*   **Animations**: Framer Motion & CSS Marquees
+*   **Icons**: Lucide React
+*   **Typeface**: Geist Sans (Headings) & Geist Mono (System logs / metadata)
 
-## Learn More
+## 📁 System Architecture Directory
 
-To learn more about Next.js, take a look at the following resources:
+*   `/about`: Professional profile dossier, expertise focus coordinates, and biography.
+*   `/portfolio`: Case study portfolio detailing ShellMate (Multi-SSH Client), BLH Hunter (Recon Scan), and Proxymon (Traffic Proxy).
+*   `/experience`: Systems development timeline & Verified CSIRT / NASA VDP disclosure records.
+*   `/services`: Cybersecurity consulting capability matrix & target statistics indicators.
+*   `/contact`: Interactive tunnel form featuring confetti transmission confirmations.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*System status: Secure & Online.*
