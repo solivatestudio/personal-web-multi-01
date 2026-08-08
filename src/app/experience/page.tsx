@@ -1,94 +1,65 @@
 import React from "react";
 import type { Metadata } from "next";
-import { SectionHeader } from "../components/SectionHeader";
-import { SpotlightCard } from "../components/SpotlightCard";
 import { roles, securityRecognitions } from "../data";
-import { Terminal, Shield, Award, Calendar, Circle } from "lucide-react";
+import { Award, Shield } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Experience & Credentials",
-  description: "Explore the secure system engineering timeline and verified vulnerability disclosure acknowledgements for Hammad Matt.",
+  title: "Field Log & Credentials Archive",
+  description: "Chronological operational experience log and institutional disclosures.",
 };
 
 export default function ExperiencePage() {
   return (
-    <main className="max-w-4xl mx-auto px-6 py-6 space-y-16">
+    <div className="p-6 md:p-12 space-y-16 font-mono text-xs workstation-grid">
       
-      {/* Page Header */}
-      <section>
-        <SectionHeader
-          label="CAREER COORDINATES"
-          title="Security Career Timeline & Credentials"
-          subtitle="A history of systems engineering, team management, and responsible disclosure logs."
-        />
-      </section>
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-[#8D8B82]/20 pb-3">
+        <span className="text-[#D7A94B] font-bold">LOG.03 // CHRONOLOGICAL FIELD LOG</span>
+        <span className="text-[#8D8B82]">SECURITY OPERATIONS TIMELINE</span>
+      </div>
 
-      {/* Vertical Interactive Timeline */}
-      <section className="relative pl-6 sm:pl-8 border-l border-white/10 space-y-12">
-        {roles.map((role, index) => (
-          <div key={index} className="relative space-y-3">
-            {/* Timeline Dot */}
-            <span className="absolute -left-[31px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#060912] border border-[#27E0FF]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#27E0FF]" />
-            </span>
-
-            {/* Time Stamp */}
-            <div className="flex items-center gap-2 text-xs font-mono text-[#27E0FF]">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>{role.period}</span>
+      {/* Chronological Log Entries */}
+      <div className="space-y-6">
+        {roles.map((role, idx) => (
+          <div key={idx} className="border border-[#8D8B82]/15 bg-[#11110F] p-6 space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#8D8B82]/15 pb-3">
+              <div className="flex items-center gap-3">
+                <span className="text-[#D7A94B] font-bold">[{role.period}]</span>
+                <span className="text-[#D8D6CC] font-bold text-sm font-sans">{role.title}</span>
+              </div>
+              <span className="text-[#8D8B82] text-[10px]">{role.company}</span>
             </div>
 
-            {/* Card Content */}
-            <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 space-y-4">
-              <div>
-                <h3 className="text-lg font-bold text-white leading-snug">
-                  {role.title}
-                </h3>
-                <span className="text-xs font-mono text-gray-500">
-                  {role.company}
-                </span>
-              </div>
-
-              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-400 list-none pl-0">
-                {role.details.map((detail, dIdx) => (
-                  <li key={dIdx} className="flex gap-2 items-start leading-relaxed">
-                    <span className="text-[#27E0FF] font-mono mt-1 select-none">&gt;&gt;</span>
-                    <span>{detail}</span>
-                  </li>
-                ))}
-              </ul>
-            </SpotlightCard>
+            <ul className="space-y-2 text-xs text-[#8D8B82] font-sans">
+              {role.details.map((detail, dIdx) => (
+                <li key={dIdx} className="flex gap-2">
+                  <span className="text-[#D7A94B] font-mono select-none">&gt;&gt;</span>
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
-      </section>
+      </div>
 
-      {/* Verified Credentials Vault */}
-      <section id="awards" className="space-y-6 pt-8">
-        <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-emerald-400 uppercase">
-          <Award className="w-4 h-4" />
-          <span>[ VERIFIED CREDENTIALS VAULT ]</span>
+      {/* Institutional Credentials Archive */}
+      <div className="space-y-6 pt-8">
+        <div className="flex items-center justify-between border-b border-[#8D8B82]/20 pb-3">
+          <span className="text-[#77E6A1] font-bold">✓ INTEL // CREDENTIALS VAULT</span>
+          <span className="text-[#8D8B82]">DISCLOSURE ACKNOWLEDGEMENTS</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {securityRecognitions.map((recognition, idx) => (
-            <SpotlightCard
-              key={idx}
-              className="glass-panel-2 rounded-xl p-5 border border-white/5 flex items-start gap-3 hover:border-emerald-500/20 transition-colors"
-            >
-              <Shield className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                <span className="block text-[10px] font-mono text-gray-500 uppercase">
-                  ACKNOWLEDGEMENT RECORD 0{idx + 1}
-                </span>
-                <span className="block text-xs font-bold text-white leading-relaxed">
-                  {recognition}
-                </span>
-              </div>
-            </SpotlightCard>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {securityRecognitions.map((rec, idx) => (
+            <div key={idx} className="border border-[#8D8B82]/15 bg-[#11110F] p-4 space-y-2">
+              <div className="text-[9px] text-[#55544E]">REC-0{idx + 1} // VERIFIED</div>
+              <div className="text-xs font-bold text-[#D8D6CC]">{rec}</div>
+              <div className="text-[9px] text-[#77E6A1]">STATUS: ACKNOWLEDGED</div>
+            </div>
           ))}
         </div>
-      </section>
+      </div>
 
-    </main>
+    </div>
   );
 }

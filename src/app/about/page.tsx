@@ -1,130 +1,116 @@
 import React from "react";
 import type { Metadata } from "next";
-import { SpotlightCard } from "../components/SpotlightCard";
-import { SectionHeader } from "../components/SectionHeader";
-import { roles } from "../data";
-import { Terminal, Shield, Award, Users, BookOpen, Cpu } from "lucide-react";
+import { roles, securityRecognitions } from "../data";
+import { Terminal, Shield, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Security Dossier",
-  description: "About Hammad Matt - Tech Lead, Systems Architect, and Cybersecurity Professional biography.",
+  title: "Personnel File // Hammad Matt",
+  description: "Personnel File for Hammad Matt - Tech Lead, Systems Architect, and Ethical Hacker.",
 };
 
 export default function AboutPage() {
   return (
-    <main className="max-w-7xl mx-auto px-6 md:px-12 py-6 space-y-20">
+    <div className="p-6 md:p-12 space-y-16 font-mono text-xs workstation-grid">
       
-      {/* Overview Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 items-start">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-[#8D8B82]/20 pb-3 text-xs">
+        <span className="text-[#D7A94B] font-bold">ID.01 // PERSONNEL FILE</span>
+        <span className="text-[#8D8B82]">CLASSIFICATION: UNRESTRICTED</span>
+      </div>
+
+      {/* Grid Personnel File Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Biography text */}
-        <div className="space-y-6">
-          <SectionHeader
-            label="SECURITY DOSSIER"
-            title="Dossier: Hammad Matt"
-            subtitle="Operational record, current focus coordinates, and technical philosophies."
-          />
+        {/* Left Dossier Card (4 Cols) */}
+        <div className="lg:col-span-4 border border-[#8D8B82]/20 bg-[#11110F] p-6 space-y-6">
           
-          <div className="space-y-5 text-sm text-gray-400 leading-relaxed">
-            <p>
-              I am a Jakarta-based fullstack developer and independent security researcher. I build highly-scalable systems that handle production loads, and then write automated tools to test their security boundaries from line one.
-            </p>
-            <p>
-              Currently, as the core systems developer for a national Travel & Logistics business group, I architect and own a monorepo digital ecosystem. This infrastructure centralizes Umrah pilgrim records, airport operations, and finance pipelines, migrating legacy spreadsheet workflows into transactional PostgreSQL.
-            </p>
-            <p>
-              Simultaneously, I serve as Tech Lead at Solivate Studio, guiding architecture decisions, orchestrating delivery pipelines, and conducting strict code security audits for retail POS systems, SaaS frameworks, and high-performance APIs.
-            </p>
-            <p>
-              In cybersecurity, I develop automated reconnaissance scanners that focus on OSINT mapping, exposed configuration vectors, and Broken Link Hijacking (BLH) threats. Responsible disclosures driven by these systems have led to formal recognitions by NASA VDP and multiple regional and state institutions across Indonesia.
-            </p>
+          <div className="relative aspect-square w-full bg-[#080808] border border-[#8D8B82]/20 flex flex-col items-center justify-center p-6 text-center space-y-3">
+            <Shield className="w-12 h-12 text-[#D7A94B]" />
+            <span className="text-[10px] text-[#D8D6CC] tracking-widest">[ TARGET_FRAME // PORTRAIT ]</span>
+            <span className="text-[9px] text-[#55544E]">ID: HM-2026-ID</span>
           </div>
 
-          {/* Identity Grid metadata */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/5">
-            <div className="space-y-1">
-              <div className="text-[10px] font-mono text-gray-500 uppercase">ROLE</div>
-              <div className="text-xs font-bold text-white">TECH LEAD / AUDITOR</div>
+          <div className="space-y-2 text-[10px] border-t border-[#8D8B82]/15 pt-4 text-[#8D8B82]">
+            <div className="flex justify-between">
+              <span>SUBJECT:</span>
+              <span className="text-[#D8D6CC] font-bold">HAMMAD MATT</span>
             </div>
-            <div className="space-y-1">
-              <div className="text-[10px] font-mono text-gray-500 uppercase">LOCATION</div>
-              <div className="text-xs font-bold text-white">JAKARTA, INDONESIA</div>
+            <div className="flex justify-between">
+              <span>PRIMARY ROLE:</span>
+              <span className="text-[#D7A94B]">ETHICAL HACKER / TECH LEAD</span>
             </div>
-            <div className="space-y-1">
-              <div className="text-[10px] font-mono text-gray-500 uppercase">STATUS</div>
-              <div className="text-xs font-bold text-white text-emerald-400">● AVAILABLE</div>
+            <div className="flex justify-between">
+              <span>STATION:</span>
+              <span className="text-[#D8D6CC]">JAKARTA, ID</span>
             </div>
-            <div className="space-y-1">
-              <div className="text-[10px] font-mono text-gray-500 uppercase">FOCUS</div>
-              <div className="text-xs font-bold text-white text-[#27E0FF]">SYSTEMS & SEC</div>
+            <div className="flex justify-between">
+              <span>STATUS:</span>
+              <span className="text-[#77E6A1]">ACTIVE / AVAILABLE</span>
             </div>
           </div>
         </div>
 
-        {/* Profile Image card layout */}
-        <div className="flex justify-center lg:justify-end">
-          <SpotlightCard className="glass-panel-1 rounded-2xl p-4 border border-white/10 w-full max-w-[360px] space-y-4 scanline-effect">
-            <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-zinc-900 border border-white/5">
-              {/* Fallback geometric profile representation */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#060912] via-[#0A6CFF]/20 to-[#A855F7]/20 flex flex-col items-center justify-center p-6 text-center space-y-3">
-                <Shield className="w-16 h-16 text-[#27E0FF] animate-pulse" />
-                <span className="font-mono text-xs text-white tracking-widest">[ IDENT_VERIFIED ]</span>
-                <span className="font-mono text-[9px] text-gray-500">HAMMAD MATT // MATT28</span>
+        {/* Right Biographical Record & Capabilities (8 Cols) */}
+        <div className="lg:col-span-8 space-y-8">
+          
+          {/* Bio Text */}
+          <div className="space-y-4 border border-[#8D8B82]/15 bg-[#11110F] p-6">
+            <div className="text-[#D7A94B] font-bold text-sm border-b border-[#8D8B82]/15 pb-2">
+              BIOGRAPHICAL RECORD
+            </div>
+            <div className="space-y-3 text-xs text-[#8D8B82] leading-relaxed font-sans">
+              <p>
+                Fullstack developer and independent security researcher based in Jakarta. I construct production backends that handle transactional loads, and build automated scanning utilities to audit their security boundaries.
+              </p>
+              <p>
+                Currently, as Systems Owner for a national Travel & Logistics business group, I architect a monorepo digital ecosystem that centralizes Umrah pilgrim records, airport handling, and finance pipelines into transactional PostgreSQL.
+              </p>
+              <p>
+                Simultaneously, I serve as Tech Lead at Solivate Studio, directing tech stack selection, code reviews, and penetration testing for SaaS applications and APIs.
+              </p>
+            </div>
+          </div>
+
+          {/* Capability Index Matrix */}
+          <div className="space-y-4 border border-[#8D8B82]/15 bg-[#11110F] p-6">
+            <div className="text-[#D7A94B] font-bold text-sm border-b border-[#8D8B82]/15 pb-2">
+              CORE CAPABILITY INDEX
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-3 bg-[#080808] border border-[#8D8B82]/15 flex justify-between items-center">
+                <span>WEB APPLICATION SECURITY</span>
+                <span className="text-[#77E6A1] font-bold">[ACTIVE]</span>
+              </div>
+              <div className="p-3 bg-[#080808] border border-[#8D8B82]/15 flex justify-between items-center">
+                <span>API PENETRATION TESTING</span>
+                <span className="text-[#77E6A1] font-bold">[ACTIVE]</span>
+              </div>
+              <div className="p-3 bg-[#080808] border border-[#8D8B82]/15 flex justify-between items-center">
+                <span>OSINT RECONNAISSANCE</span>
+                <span className="text-[#77E6A1] font-bold">[ACTIVE]</span>
+              </div>
+              <div className="p-3 bg-[#080808] border border-[#8D8B82]/15 flex justify-between items-center">
+                <span>SYSTEM UTILITIES (RUST/GO)</span>
+                <span className="text-[#77E6A1] font-bold">[ACTIVE]</span>
               </div>
             </div>
-            
-            <div className="border-t border-white/5 pt-3 space-y-1.5 font-mono text-[10px] text-gray-500">
-              <div className="flex justify-between">
-                <span>ENCRYPTION KEYS</span>
-                <span className="text-[#27E0FF]">AES_256_GCM</span>
-              </div>
-              <div className="flex justify-between">
-                <span>AUTHORIZED LEVEL</span>
-                <span className="text-white">SENIOR AUDITOR</span>
-              </div>
+          </div>
+
+          {/* Educational Background */}
+          <div className="space-y-3 border border-[#8D8B82]/15 bg-[#11110F] p-6">
+            <div className="text-[#D7A94B] font-bold text-sm border-b border-[#8D8B82]/15 pb-2">
+              INDEPENDENT CURRICULUM // PAKET C
             </div>
-          </SpotlightCard>
+            <p className="text-xs text-[#8D8B82] leading-relaxed font-sans">
+              Selected Indonesia's Paket C equivalency pathway to focus directly on an intensive self-directed syllabus covering systems programming, backend engineering, and web vulnerability analysis while taking professional client projects.
+            </p>
+          </div>
+
         </div>
-      </section>
 
-      {/* Philosophy Coordinates */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 space-y-3">
-          <Award className="w-6 h-6 text-[#27E0FF]" />
-          <h3 className="text-base font-bold text-white">Responsible Disclosure</h3>
-          <p className="text-xs text-gray-400 leading-relaxed">
-            Committed to collaborative vulnerability disclosure to protect target infrastructures and users from unpatched entry points.
-          </p>
-        </SpotlightCard>
+      </div>
 
-        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 space-y-3">
-          <Cpu className="w-6 h-6 text-[#A855F7]" />
-          <h3 className="text-base font-bold text-white">Clean & Secure Code</h3>
-          <p className="text-xs text-gray-400 leading-relaxed">
-            Writing testable, modular, and optimized systems components, ensuring authorization gates are built into the design from day one.
-          </p>
-        </SpotlightCard>
-
-        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 space-y-3">
-          <Users className="w-6 h-6 text-emerald-400" />
-          <h3 className="text-base font-bold text-white">Pragmatic Tech Lead</h3>
-          <p className="text-xs text-gray-400 leading-relaxed">
-            Migrating complex processes from legacy models into maintainable databases, ensuring engineering velocity matches product goals.
-          </p>
-        </SpotlightCard>
-      </section>
-
-      {/* Non-traditional Education statement */}
-      <section className="glass-panel-2 rounded-2xl p-8 border border-white/5 space-y-4">
-        <div className="flex items-center gap-2 text-xs font-mono text-[#27E0FF]">
-          <BookOpen className="w-4 h-4" />
-          <span>EDUCATION COORDINATES</span>
-        </div>
-        <h3 className="text-lg font-bold text-white">Self-Directed Curriculum & Kesetaraan Paket C</h3>
-        <p className="text-xs text-gray-400 leading-relaxed">
-          I opted for Indonesia's Paket C equivalency pathway to bypass standard schooling timelines. This structural choice allowed me to construct an intensive, self-directed systems programming and cybersecurity syllabus, aligning my skills directly with production requirements while starting professional contract work.
-        </p>
-      </section>
-    </main>
+    </div>
   );
 }

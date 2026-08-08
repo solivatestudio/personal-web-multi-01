@@ -4,9 +4,7 @@ import React from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { allProjects } from "../../data";
-import { SectionHeader } from "../../components/SectionHeader";
 import { ArrowLeft, Terminal, ShieldAlert, CheckCircle, ExternalLink, Cpu } from "lucide-react";
-import { SpotlightCard } from "../../components/SpotlightCard";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -16,166 +14,114 @@ export default function ProjectDetailPage() {
 
   if (!project) {
     return (
-      <main className="max-w-7xl mx-auto px-6 py-20 text-center space-y-6">
-        <ShieldAlert className="w-16 h-16 text-red-500 mx-auto animate-pulse" />
-        <h2 className="text-2xl font-bold text-white font-mono">NODE_NOT_FOUND // 404</h2>
-        <p className="text-gray-400 max-w-sm mx-auto text-sm">
-          Requested secure coordinate is offline or lacks authorization.
-        </p>
-        <Link href="/portfolio" className="inline-block text-[#27E0FF] hover:underline font-mono text-xs">
-          &lt; Return to Portfolio Index
+      <div className="p-12 text-center font-mono space-y-4">
+        <div className="text-red-500 font-bold text-lg">CASE_FILE_NOT_FOUND // 404</div>
+        <Link href="/portfolio" className="text-[#D7A94B] hover:underline text-xs">
+          &lt; RETURN TO OPERATIONS ARCHIVE
         </Link>
-      </main>
+      </div>
     );
   }
 
-  // Fallback details if they are missing
   const details = project.details || {
-    overview: `${project.title} was built to provide customized utility, addressing real world deployment constraints.`,
-    challenge: "Developing a highly performant interface while maintaining low-memory foot print and ensuring input safety.",
-    approach: "Designed modular layers separating concerns and utilizing static types to intercept common memory bugs.",
-    technicalOverview: "Engineered logic with modern build tools ensuring low latency and structural dependency safety.",
-    outcome: "Successfully packaged software, lowering code maintenance overhead and proving robustness under stress testing."
+    overview: `${project.title} was engineered to provide target solution utility under operational deployment limits.`,
+    challenge: "Maintaining low memory overhead while ensuring thread execution and input validation.",
+    approach: "Designed modular layers isolating critical execution pathways and verifying static types.",
+    technicalOverview: "Executed using Go/Rust and Next.js engines ensuring sub-millisecond API responsiveness.",
+    outcome: "Successfully deployed in production, maintaining clean stability and zero reported memory bugs."
   };
 
   return (
-    <main className="max-w-4xl mx-auto px-6 py-6 space-y-12">
+    <div className="p-6 md:p-12 space-y-12 font-mono text-xs workstation-grid">
       
-      {/* Return button */}
+      {/* Back Button */}
       <div>
-        <Link
-          href="/portfolio"
-          className="inline-flex items-center gap-2 text-xs font-mono text-gray-500 hover:text-white transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>BACK TO DOSSIER DIRECTORY</span>
+        <Link href="/portfolio" className="inline-flex items-center gap-2 text-[#8D8B82] hover:text-[#D8D6CC]">
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>&lt; BACK TO CASE FILES ARCHIVE</span>
         </Link>
       </div>
 
-      {/* Header */}
-      <section className="space-y-4">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="mono-tag text-[9px] text-[#27E0FF] bg-[#27E0FF]/5 border border-[#27E0FF]/25 px-2.5 py-0.5 rounded">
-            {project.category}
-          </span>
-          <span className="text-[10px] font-mono text-gray-500">
-            RECORDED: {project.projectDate}
-          </span>
+      {/* Case File Header */}
+      <div className="border border-[#8D8B82]/20 bg-[#11110F] p-6 md:p-8 space-y-4">
+        <div className="flex justify-between items-center text-[10px] text-[#55544E] border-b border-[#8D8B82]/15 pb-3">
+          <span className="text-[#D7A94B] font-bold">CASE FILE // OP-00{project.id}</span>
+          <span className="text-[#77E6A1]">STATUS: CLOSED</span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        <h1 className="text-2xl md:text-4xl font-extrabold text-[#D8D6CC] font-sans">
           {project.title}
         </h1>
 
-        <div className="flex items-center justify-between border-y border-white/5 py-4 mt-6">
-          <div className="space-y-1">
-            <span className="block text-[10px] font-mono text-gray-500 uppercase">CLIENT/COMPANY</span>
-            <span className="text-xs font-semibold text-white">{project.company}</span>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-[10px] text-[#8D8B82] pt-4 border-t border-[#8D8B82]/15">
+          <div>
+            <span className="block text-[#55544E]">CLIENT/TARGET</span>
+            <span className="text-[#D8D6CC] font-bold">{project.company}</span>
           </div>
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-mono text-[#27E0FF] hover:underline"
-            >
-              <span>SOURCE NODE</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          )}
+          <div>
+            <span className="block text-[#55544E]">CATEGORY</span>
+            <span className="text-[#D7A94B]">{project.category}</span>
+          </div>
+          <div>
+            <span className="block text-[#55544E]">RECORDED</span>
+            <span>{project.projectDate}</span>
+          </div>
+          <div>
+            <span className="block text-[#55544E]">CLEARANCE</span>
+            <span>PUBLIC</span>
+          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Analysis Grid Details */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Case File Main Content & Sticky Index Sidebar */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Core Case Study Texts */}
-        <div className="md:col-span-2 space-y-8">
-          <div className="space-y-3">
-            <h3 className="text-sm font-mono text-[#27E0FF] uppercase flex items-center gap-1.5">
-              <Terminal className="w-4 h-4" />
-              <span>01 / System Overview</span>
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-              {details.overview}
-            </p>
-          </div>
+        {/* Sticky Index Navigation (3 Cols) */}
+        <div className="lg:col-span-3 border border-[#8D8B82]/15 bg-[#11110F] p-4 space-y-3 sticky top-16 text-[10px]">
+          <div className="text-[#55544E] uppercase border-b border-[#8D8B82]/15 pb-2 font-bold">CASE FILE INDEX</div>
+          <ul className="space-y-2 text-[#8D8B82]">
+            <li><a href="#summary" className="hover:text-[#D7A94B]">00 // SUMMARY</a></li>
+            <li><a href="#challenge" className="hover:text-[#D7A94B]">01 // CHALLENGE</a></li>
+            <li><a href="#approach" className="hover:text-[#D7A94B]">02 // APPROACH</a></li>
+            <li><a href="#technical" className="hover:text-[#D7A94B]">03 // TECHNICAL OVERVIEW</a></li>
+            <li><a href="#outcome" className="hover:text-[#D7A94B]">04 // OUTCOME</a></li>
+          </ul>
+        </div>
 
-          <div className="space-y-3">
-            <h3 className="text-sm font-mono text-[#27E0FF] uppercase flex items-center gap-1.5">
-              <ShieldAlert className="w-4 h-4 text-amber-500" />
-              <span>02 / Security Challenge</span>
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-              {details.challenge}
-            </p>
-          </div>
+        {/* Content Details (9 Cols) */}
+        <div className="lg:col-span-9 space-y-8">
+          
+          <section id="summary" className="space-y-3 border border-[#8D8B82]/15 bg-[#11110F] p-6">
+            <h3 className="text-sm font-bold text-[#D7A94B]">00 // OVERVIEW & SUMMARY</h3>
+            <p className="text-xs text-[#8D8B82] leading-relaxed font-sans">{details.overview}</p>
+          </section>
 
-          <div className="space-y-3">
-            <h3 className="text-sm font-mono text-[#27E0FF] uppercase flex items-center gap-1.5">
-              <Cpu className="w-4 h-4" />
-              <span>03 / Core Approach</span>
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-              {details.approach}
-            </p>
-          </div>
+          <section id="challenge" className="space-y-3 border border-[#8D8B82]/15 bg-[#11110F] p-6">
+            <h3 className="text-sm font-bold text-[#B94A3D]">01 // SECURITY & ARCHITECTURAL CHALLENGE</h3>
+            <p className="text-xs text-[#8D8B82] leading-relaxed font-sans">{details.challenge}</p>
+          </section>
 
-          <div className="space-y-3">
-            <h3 className="text-sm font-mono text-[#27E0FF] uppercase flex items-center gap-1.5">
-              <Terminal className="w-4 h-4" />
-              <span>04 / Technical Implementation Details</span>
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed bg-[#05070B] p-4 rounded-xl border border-white/5 font-mono text-[11px] whitespace-pre-wrap">
+          <section id="approach" className="space-y-3 border border-[#8D8B82]/15 bg-[#11110F] p-6">
+            <h3 className="text-sm font-bold text-[#D7A94B]">02 // APPROACH & METHODOLOGY</h3>
+            <p className="text-xs text-[#8D8B82] leading-relaxed font-sans">{details.approach}</p>
+          </section>
+
+          <section id="technical" className="space-y-3 border border-[#8D8B82]/15 bg-[#11110F] p-6">
+            <h3 className="text-sm font-bold text-[#D7A94B]">03 // TECHNICAL IMPLEMENTATION SNIPPET</h3>
+            <pre className="p-4 bg-[#080808] border border-[#8D8B82]/20 text-[11px] text-[#D8D6CC] overflow-x-auto whitespace-pre-wrap">
               {details.technicalOverview}
-            </p>
-          </div>
+            </pre>
+          </section>
 
-          <div className="space-y-3">
-            <h3 className="text-sm font-mono text-[#27E0FF] uppercase flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-emerald-400" />
-              <span>05 / Verified Outcome</span>
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-              {details.outcome}
-            </p>
-          </div>
+          <section id="outcome" className="space-y-3 border border-[#8D8B82]/15 bg-[#11110F] p-6">
+            <h3 className="text-sm font-bold text-[#77E6A1]">04 // VERIFIED OUTCOME</h3>
+            <p className="text-xs text-[#8D8B82] leading-relaxed font-sans">{details.outcome}</p>
+          </section>
+
         </div>
 
-        {/* Sidebar Specifications */}
-        <div className="space-y-6">
-          <SpotlightCard className="glass-panel-2 rounded-xl p-5 border border-white/5 space-y-4">
-            <h4 className="text-xs font-mono font-bold text-white border-b border-white/5 pb-2">
-              SYSTEM TARGET MATRIX
-            </h4>
-            
-            <div className="space-y-3 text-[11px] font-mono">
-              <div className="space-y-1">
-                <span className="block text-gray-500 uppercase text-[9px]">ENCRYPTION LAYER</span>
-                <span className="text-[#27E0FF]">AES_256_GCM_SECURED</span>
-              </div>
+      </div>
 
-              <div className="space-y-1">
-                <span className="block text-gray-500 uppercase text-[9px]">AUDIT LEVEL</span>
-                <span className="text-white">FULL STRUCTURAL RECON</span>
-              </div>
-
-              <div className="space-y-1">
-                <span className="block text-gray-500 uppercase text-[9px]">TECH PAYLOAD</span>
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="text-[9px] bg-white/5 border border-white/5 px-2 py-0.5 rounded text-gray-400">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </SpotlightCard>
-        </div>
-
-      </section>
-
-    </main>
+    </div>
   );
 }

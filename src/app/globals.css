@@ -1,102 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --background: #07090D;
-  --foreground: #F4F6F8;
-  --bg-carbon: #0A0D12;
-  --bg-graphite: #10141B;
-  --bg-elevated: #151A22;
+  --black-01: #080808;
+  --black-02: #0D0D0C;
+  --panel: #11110F;
+  --panel-high: #171713;
   
-  --accent-ice: #8AE8FF;
-  --accent-violet: #8B7CFF;
-  --status-success: #77E6A1;
-  --status-warning: #F5C96A;
-  --status-critical: #FF6B7A;
+  --text-primary: #D8D6CC;
+  --text-secondary: #8D8B82;
+  --text-muted: #55544E;
+
+  --accent-amber: #D7A94B;
+  --accent-amber-muted: #B98A3D;
+  --signal-red: #B94A3D;
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--black-01);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
   position: relative;
   letter-spacing: -0.01em;
 }
 
-/* Ambient Spectral Mesh Gradient & Vignette Background */
-.obsidian-bg {
-  background: 
-    radial-gradient(circle at 70% 18%, rgba(139, 124, 255, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 18% 75%, rgba(138, 232, 255, 0.05) 0%, transparent 38%),
-    #07090D;
-}
-
-/* Ultra Subtle Technical Grid Overlay */
-.technical-grid-faint {
+/* Subtle Technical Workstation Grid Overlay */
+.workstation-grid {
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(216, 214, 204, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 214, 204, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
   background-position: center;
 }
 
-/* Layered Glassmorphism Refraction Levels */
-.glass-01-nav {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
-  backdrop-filter: blur(28px) saturate(140%);
-  -webkit-backdrop-filter: blur(28px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 20px 40px rgba(0, 0, 0, 0.5);
+/* Subtle Horizontal Scanline Emitter */
+@keyframes scanline-sweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
 }
 
-.glass-02-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(20px) saturate(130%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 20px 60px rgba(0, 0, 0, 0.45);
-}
-
-.glass-03-panel {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
-}
-
-/* Material Specular Cursor Highlight Tracking */
-.specular-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.specular-card::before {
+.scanline-hud::after {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: radial-gradient(450px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(138, 232, 255, 0.06), transparent 60%);
-  z-index: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(215, 169, 75, 0.08), transparent);
   pointer-events: none;
-  transition: opacity 0.4s ease;
-  opacity: 0;
+  z-index: 40;
+  animation: scanline-sweep 10s linear infinite;
 }
 
-.specular-card:hover::before {
-  opacity: 1;
+/* Technical Industrial Borders & Cut Corners */
+.hud-border {
+  border: 1px solid rgba(141, 139, 130, 0.15);
 }
 
-/* Technical Monospace Metadata Label */
-.mono-label {
+.hud-panel {
+  background-color: var(--panel);
+  border: 1px solid rgba(141, 139, 130, 0.12);
+  border-radius: 2px;
+}
+
+.hud-panel-high {
+  background-color: var(--panel-high);
+  border: 1px solid rgba(215, 169, 75, 0.25);
+  border-radius: 2px;
+}
+
+.hud-glass-panel {
+  background: rgba(17, 17, 15, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(216, 214, 204, 0.08);
+  border-radius: 2px;
+}
+
+/* Monospace Technical Labels */
+.mono-hud {
   font-family: var(--font-mono), monospace;
   font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -117,16 +105,9 @@ body {
 }
 
 /* Fluid Typography Clamp Rules */
-.text-display-xl {
-  font-size: clamp(3rem, 7.5vw, 8.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  font-weight: 800;
-}
-
-.text-display-lg {
-  font-size: clamp(2.2rem, 5vw, 5.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  font-weight: 750;
+.text-display-giant {
+  font-size: clamp(3.5rem, 12vw, 12rem);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  font-weight: 900;
 }

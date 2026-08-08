@@ -1,117 +1,55 @@
 import React from "react";
 import type { Metadata } from "next";
 import { allProjects } from "../data";
-import { ProjectCard } from "../components/ProjectCard";
-import { SectionHeader } from "../components/SectionHeader";
-import { SpotlightCard } from "../components/SpotlightCard";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Case Studies & Work",
-  description: "Explore cybersecurity reconnaissance scanners, local-first encrypted clients, and multi-tenant SaaS dashboards developed by Hammad Matt.",
+  title: "Case Files & Active Operations",
+  description: "Browse case files and active security operations engineered by Hammad Matt.",
 };
 
 export default function PortfolioPage() {
-  const featured = allProjects.filter((p) => p.details);
-  const regular = allProjects.filter((p) => !p.details);
-
   return (
-    <main className="max-w-7xl mx-auto px-6 md:px-12 py-6 space-y-16">
+    <div className="p-6 md:p-12 space-y-12 font-mono text-xs workstation-grid">
       
-      {/* Page Header */}
-      <section>
-        <SectionHeader
-          label="PORTFOLIO RECORDS"
-          title="Engineered Systems & Reconnaissance Scanners"
-          subtitle="Explore security client applications, asynchronous network diagnostic nodes, and custom SaaS platforms."
-        />
-      </section>
+      <div className="flex items-center justify-between border-b border-[#8D8B82]/20 pb-3">
+        <span className="text-[#D7A94B] font-bold">OPS.02 // CASE FILES ARCHIVE</span>
+        <span className="text-[#8D8B82]">TOTAL RECORDS: 0{allProjects.length}</span>
+      </div>
 
-      {/* Featured Projects Large Horiz Cards */}
-      <section className="space-y-6">
-        <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">
-          [ 01 / FEATURED ARCHITECTURES ]
-        </h3>
-        
-        <div className="space-y-6">
-          {featured.map((project) => (
-            <SpotlightCard
-              key={project.id}
-              className="glass-panel-1 rounded-2xl p-6 md:p-8 border border-white/10 hover:border-[#0A6CFF]/30 transition-all duration-300"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 items-start">
-                <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="mono-tag text-[9px] text-[#27E0FF] bg-[#27E0FF]/5 border border-[#27E0FF]/20 px-2 py-0.5 rounded">
-                      {project.category}
-                    </span>
-                    <span className="text-[10px] font-mono text-gray-500">
-                      {project.projectDate.split("-")[0]}
-                    </span>
-                  </div>
-
-                  <h4 className="text-xl sm:text-2xl font-bold text-white group">
-                    <a
-                      href={`/portfolio/${project.slug}`}
-                      className="hover:text-[#27E0FF] transition-colors inline-flex items-center gap-2"
-                    >
-                      <span>{project.title}</span>
-                      <ArrowUpRight className="w-5 h-5 text-gray-500 hover:text-white transition-colors" />
-                    </a>
-                  </h4>
-
-                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 pt-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="text-[9px] font-mono text-gray-500 px-2.5 py-1 rounded bg-white/5 border border-white/5">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Decorative Technical ASCII Diagram Box */}
-                <div className="glass-panel-3 rounded-xl p-5 border border-white/5 font-mono text-[9px] text-[#27E0FF] space-y-3">
-                  <div className="border-b border-white/5 pb-2 text-white/50 flex justify-between">
-                    <span>SECURITY_MANIFEST.MD</span>
-                    <span>MD5: E8F92...</span>
-                  </div>
-                  <div className="space-y-1 text-gray-500">
-                    <div>// CORE PLATFORM ATTRIBUTES</div>
-                    <div>LOCAL_FIRST: true</div>
-                    <div>AUDITED_STATUS: VERIFIED_SUCCESS</div>
-                  </div>
-                  <div className="pt-2">
-                    <a
-                      href={`/portfolio/${project.slug}`}
-                      className="text-[#27E0FF] hover:underline"
-                    >
-                      Read full security analysis &gt;
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </SpotlightCard>
-          ))}
+      {/* Case Files Table List */}
+      <div className="border border-[#8D8B82]/15 bg-[#11110F] divide-y divide-[#8D8B82]/15">
+        <div className="grid grid-cols-12 p-3.5 text-[9px] text-[#55544E] uppercase tracking-wider font-bold bg-[#171713]">
+          <span className="col-span-2">FILE ID</span>
+          <span className="col-span-4">SUBJECT / OPERATION</span>
+          <span className="col-span-3">CATEGORY</span>
+          <span className="col-span-2">YEAR</span>
+          <span className="col-span-1 text-right">ACTION</span>
         </div>
-      </section>
 
-      {/* Bento Grid layout for other projects */}
-      <section className="space-y-6">
-        <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">
-          [ 02 / ADDITIONAL UTILITIES ]
-        </h3>
+        {allProjects.map((project) => (
+          <div
+            key={project.id}
+            className="grid grid-cols-12 p-4 items-center hover:bg-[#171713] transition-colors group text-[#8D8B82] hover:text-[#D8D6CC]"
+          >
+            <span className="col-span-2 text-[#D7A94B] font-bold">CASE-00{project.id}</span>
+            <span className="col-span-4 text-[#D8D6CC] font-bold text-sm font-sans">{project.title}</span>
+            <span className="col-span-3 text-[10px]">{project.category}</span>
+            <span className="col-span-2 text-[10px]">{project.projectDate.split("-")[0]}</span>
+            <div className="col-span-1 text-right">
+              <Link
+                href={`/portfolio/${project.slug}`}
+                data-cursor="OPEN"
+                className="inline-flex items-center text-[#D7A94B] hover:text-[#D8D6CC]"
+              >
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {regular.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-      </section>
-
-    </main>
+    </div>
   );
 }
