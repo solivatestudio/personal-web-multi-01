@@ -6,13 +6,12 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 export function CustomCursor() {
   const [mounted, setMounted] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [cursorText, setCursorText] = useState("");
 
-  // Position coordinates using motion values
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  // Add spring configuration for natural trail/blob physics behavior
-  const springConfig = { damping: 25, stiffness: 250, mass: 0.5 };
+  const springConfig = { damping: 28, stiffness: 300, mass: 0.4 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -20,23 +19,26 @@ export function CustomCursor() {
     setMounted(true);
 
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 6);
-      cursorY.set(e.clientY - 6);
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
     };
 
-    // Update hovered state based on link / button hovers
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.classList.contains("cursor-pointer")
-      ) {
+      const interactive = target.closest("a, button, [role='button'], .cursor-pointer");
+
+      if (interactive) {
         setHovered(true);
+        if (interactive.getAttribute("data-cursor")) {
+          setCursorText(interactive.getAttribute("data-cursor") || "");
+        } else if (interactive.tagName === "A" || interactive.closest("a")) {
+          setCursorText("VIEW");
+        } else {
+          setCursorText("");
+        }
       } else {
         setHovered(false);
+        setCursorText("");
       }
     };
 
@@ -53,7 +55,6 @@ export function CustomCursor() {
 
   return (
     <>
-      {/* Hide native cursor globally */}
       <style jsx global>{`
         @media (pointer: fine) {
           body, a, button, select, input, textarea, [role="button"] {
@@ -62,31 +63,36 @@ export function CustomCursor() {
         }
       `}</style>
 
-      {/* Branded core dot */}
+      {/* Core Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-[#27E0FF] rounded-full pointer-events-none z-50 mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-2 h-2 bg-[#8AE8FF] rounded-full pointer-events-none z-50 mix-blend-difference hidden md:block"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
+          translateX: "-50%",
+          translateY: "-50%",
         }}
       />
 
-      {/* Ambient magnetic scanning ring */}
+      {/* Contextual Contextual Outer Ring / Cursor Bubble */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border border-[#27E0FF]/40 rounded-full pointer-events-none z-50 hidden md:block"
+        className="fixed top-0 left-0 border border-[#8AE8FF]/40 rounded-full pointer-events-none z-50 flex items-center justify-center font-mono text-[9px] text-[#8AE8FF] font-bold tracking-widest hidden md:block"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
-          translateX: "-34%",
-          translateY: "-34%",
+          translateX: "-50%",
+          translateY: "-50%",
         }}
         animate={{
-          scale: hovered ? 1.8 : 1,
-          backgroundColor: hovered ? "rgba(39, 224, 255, 0.08)" : "rgba(39, 224, 255, 0)",
-          borderColor: hovered ? "#0A6CFF" : "rgba(39, 224, 255, 0.4)",
+          width: hovered ? (cursorText ? 56 : 38) : 28,
+          height: hovered ? (cursorText ? 56 : 38) : 28,
+          backgroundColor: hovered ? "rgba(138, 232, 255, 0.08)" : "rgba(138, 232, 255, 0)",
+          borderColor: hovered ? "#8AE8FF" : "rgba(138, 232, 255, 0.3)",
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      />
+        transition={{ type: "spring", stiffness: 350, damping: 25 }}
+      >
+        {hovered && cursorText && <span>{cursorText}</span>}
+      </motion.div>
     </>
   );
 }

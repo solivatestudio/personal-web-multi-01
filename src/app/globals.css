@@ -1,105 +1,103 @@
 @import "tailwindcss";
 
 :root {
-  --background: #060912;
-  --foreground: #f4f4f7;
-  --primary-accent: #0A6CFF;
-  --cyan-accent: #27E0FF;
-  --indigo-accent: #655CFF;
-  --purple-accent: #A855F7;
-  --glass-bg: rgba(10, 15, 30, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --background: #07090D;
+  --foreground: #F4F6F8;
+  --bg-carbon: #0A0D12;
+  --bg-graphite: #10141B;
+  --bg-elevated: #151A22;
+  
+  --accent-ice: #8AE8FF;
+  --accent-violet: #8B7CFF;
+  --status-success: #77E6A1;
+  --status-warning: #F5C96A;
+  --status-critical: #FF6B7A;
+
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
   position: relative;
+  letter-spacing: -0.01em;
 }
 
-/* Subtle grid layout overlays */
-.technical-grid {
+/* Ambient Spectral Mesh Gradient & Vignette Background */
+.obsidian-bg {
+  background: 
+    radial-gradient(circle at 70% 18%, rgba(139, 124, 255, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 18% 75%, rgba(138, 232, 255, 0.05) 0%, transparent 38%),
+    #07090D;
+}
+
+/* Ultra Subtle Technical Grid Overlay */
+.technical-grid-faint {
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-size: 60px 60px;
   background-position: center;
 }
 
-/* Glassmorphism Styles */
-.glass-panel-1 {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+/* Layered Glassmorphism Refraction Levels */
+.glass-01-nav {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.glass-panel-2 {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 
-    0 10px 25px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+.glass-02-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-.glass-panel-3 {
-  background: rgba(255, 255, 255, 0.025);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+.glass-03-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.04);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
-/* Custom spotlight glow effect */
-.spotlight-card {
+/* Material Specular Cursor Highlight Tracking */
+.specular-card {
   position: relative;
   overflow: hidden;
 }
 
-.spotlight-card::before {
+.specular-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(10, 108, 255, 0.06), transparent 40%);
+  background: radial-gradient(450px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(138, 232, 255, 0.06), transparent 60%);
   z-index: 1;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.4s ease;
   opacity: 0;
 }
 
-.spotlight-card:hover::before {
+.specular-card:hover::before {
   opacity: 1;
 }
 
-/* Monospace small typography tags */
-.mono-tag {
+/* Technical Monospace Metadata Label */
+.mono-label {
   font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-}
-
-/* Ambient glow bubbles */
-.glow-bubble-blue {
-  background: radial-gradient(circle, rgba(10, 108, 255, 0.12) 0%, transparent 70%);
-}
-
-.glow-bubble-cyan {
-  background: radial-gradient(circle, rgba(39, 224, 255, 0.08) 0%, transparent 70%);
-}
-
-.glow-bubble-purple {
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
 }
 
 /* Infinite Marquee CSS-only loop */
@@ -111,42 +109,24 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 25s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
 .marquee-container:hover .marquee-track {
   animation-play-state: paused;
 }
 
-/* Scanline animation */
-@keyframes scanline {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
+/* Fluid Typography Clamp Rules */
+.text-display-xl {
+  font-size: clamp(3rem, 7.5vw, 8.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 800;
 }
 
-.scanline-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.scanline-effect::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(39, 224, 255, 0.4), transparent);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.scanline-effect:hover::after {
-  opacity: 1;
-  animation: scanline 2s linear infinite;
+.text-display-lg {
+  font-size: clamp(2.2rem, 5vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 750;
 }

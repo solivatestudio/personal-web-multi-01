@@ -2,174 +2,235 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Terminal, Shield } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SpotlightCard } from "./components/SpotlightCard";
-import { CyberOrb } from "./components/CyberOrb";
+import { RefractiveArtifact } from "./components/RefractiveArtifact";
 import { ProjectCard } from "./components/ProjectCard";
 import { SectionHeader } from "./components/SectionHeader";
 import { CountUp } from "./components/CountUp";
 import { portfolioProjects, roles, securityRecognitions } from "./data";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   const marqueeItems = [
-    "OSCP CERTIFIED",
-    "NASA VDP APPRECIATION LOP",
-    "ESDM-CSIRT RECOGNIZED",
-    "KEMENTERIAN PU-CSIRT VALIDATED",
-    "BMKG-CSIRT CONTRIBUTOR",
-    "CRES VAULT COMPLIANT"
+    "APPLICATION SECURITY",
+    "PENETRATION TESTING",
+    "SECURITY RESEARCH",
+    "OSINT RECONNAISSANCE",
+    "VULNERABILITY DISCLOSURE",
+    "INFRASTRUCTURE AUDITS"
   ];
 
   return (
-    <main className="max-w-7xl mx-auto px-6 md:px-12 py-6 space-y-28">
-      {/* 1. HERO SECTION */}
-      <section className="min-h-[80vh] flex flex-col lg:flex-row lg:items-center justify-between gap-12 relative">
+    <main className="max-w-[1480px] mx-auto px-6 md:px-16 py-6 space-y-36">
+      
+      {/* 1. HERO SECTION — Asymmetric 100svh Editorial Layout */}
+      <section className="min-h-[85vh] flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center relative">
         
-        {/* Left Headline */}
-        <div className="flex-1 space-y-6 z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A6CFF]/10 border border-[#0A6CFF]/20 text-[10px] font-mono text-[#27E0FF] tracking-wider uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#27E0FF] animate-ping"></span>
-            <span>SECURE INTELLIGENCE DOSSIER</span>
+        {/* Left Headline (Takes 7 columns) */}
+        <div className="lg:col-span-7 space-y-8 z-10">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-03-panel border border-white/10 text-[10px] font-mono text-[#8AE8FF] tracking-widest uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#8AE8FF] animate-ping"></span>
+            <span>SEC.01 // OBSIDIAN INTELLIGENCE INTERFACE</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] md:max-w-xl">
-            We build systems & test their <span className="text-[#27E0FF]">Security Limits</span>.
-          </h1>
+          <div className="space-y-4">
+            <h1 className="text-display-xl text-white uppercase font-extrabold tracking-tighter">
+              BUILDING <br />
+              <span className="text-[#8AE8FF]">RESILIENT</span> <br />
+              SYSTEMS.
+            </h1>
+          </div>
 
-          <p className="text-sm sm:text-base text-gray-400 max-w-lg leading-relaxed">
-            I am Hammad Matt, a Tech Lead and Security Researcher. I construct secure enterprise microservice codebases, automate OSINT reconnaissance pipelines, and audit complex web integrations.
+          <p className="text-base text-gray-400 max-w-xl leading-relaxed font-sans font-light">
+            I am Hammad Matt, Tech Lead & Security Researcher. I build high-throughput microservice backends, perform application penetration audits, and develop OSINT reconnaissance scanners.
           </p>
 
-          {/* Call to actions */}
-          <div className="flex flex-wrap gap-4 pt-2">
+          <div className="flex flex-wrap gap-5 pt-4">
             <Link
               href="/portfolio"
-              className="px-5 py-3 rounded-lg bg-[#0A6CFF] hover:bg-[#0052cc] text-white font-mono text-xs font-semibold tracking-wider transition-all shadow-[0_0_20px_rgba(10,108,255,0.3)] hover:shadow-[0_0_30px_rgba(10,108,255,0.5)] flex items-center gap-2 group cursor-pointer"
+              data-cursor="EXPLORE"
+              className="px-6 py-4 rounded-xl bg-[#8AE8FF] text-[#07090D] font-mono text-xs font-bold tracking-wider hover:bg-white transition-all shadow-[0_0_30px_rgba(138,232,255,0.25)] flex items-center gap-3 group cursor-pointer"
             >
-              <span>EXPLORE CASE STUDIES</span>
+              <span>SELECTED OPERATIONS</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             
             <Link
               href="/contact"
-              className="px-5 py-3 rounded-lg glass-panel-1 hover:bg-white/10 text-white font-mono text-xs font-semibold tracking-wider transition-all border border-white/10 flex items-center gap-2 cursor-pointer"
+              data-cursor="CONNECT"
+              className="px-6 py-4 rounded-xl glass-02-card hover:bg-white/10 text-white font-mono text-xs font-bold tracking-wider transition-all border border-white/10 flex items-center gap-2 cursor-pointer"
             >
-              <span>ESTABLISH NODE CONNECTION</span>
+              <span>ESTABLISH TUNNEL</span>
             </Link>
           </div>
         </div>
 
-        {/* Right Interactive Cyber Orb */}
-        <div className="flex-1 flex justify-center lg:justify-end items-center">
-          <CyberOrb />
+        {/* Right 3D Refractive Artifact & Intelligence Card (Takes 5 columns) */}
+        <div className="lg:col-span-5 flex flex-col items-center justify-center relative w-full">
+          <RefractiveArtifact />
+
+          {/* Floating Intelligence Panel */}
+          <div className="glass-02-card rounded-xl p-4 border border-white/10 font-mono text-[10px] text-[#8AE8FF] space-y-2 w-full max-w-[280px] shadow-2xl">
+            <div className="flex items-center justify-between text-white/50 border-b border-white/5 pb-1.5">
+              <span>SYSTEM DIAGNOSTIC</span>
+              <span className="text-[#77E6A1]">● ONLINE</span>
+            </div>
+            <div className="flex justify-between">
+              <span>DOMAIN:</span>
+              <span className="text-white">APPSEC / RECON</span>
+            </div>
+            <div className="flex justify-between">
+              <span>STATUS:</span>
+              <span className="text-[#8AE8FF]">AUDITOR_CONFIRMED</span>
+            </div>
+          </div>
         </div>
+
       </section>
 
-      {/* 2. INFINITE CAROUSEL (MARQUEE) - PURE CSS CERTIFICATION VIBE */}
-      <section className="relative overflow-hidden w-full py-4 border-y border-white/5 bg-[#05070B]/50 font-mono text-xs text-gray-400 marquee-container">
-        <div className="marquee-track flex gap-12">
+      {/* 2. EXPERTISE MARQUEE RIBBON */}
+      <section className="relative overflow-hidden w-full py-5 border-y border-white/5 bg-[#0A0D12]/60 font-mono text-xs text-gray-400 marquee-container">
+        <div className="marquee-track flex gap-16">
           {[...marqueeItems, ...marqueeItems].map((item, idx) => (
-            <span key={idx} className="flex items-center gap-2.5 shrink-0 text-[10px] tracking-widest text-[#27E0FF]">
-              <Shield className="w-3.5 h-3.5" />
-              <span>{item}</span>
+            <span key={idx} className="flex items-center gap-3 shrink-0 tracking-widest text-xs">
+              <span className="text-[#8AE8FF]">✦</span>
+              <span className="text-white font-semibold">{item}</span>
             </span>
           ))}
         </div>
       </section>
 
-      {/* 3. QUICK STATS COUNT-UP SECTION */}
+      {/* 3. QUANTITATIVE METRICS GRID */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 text-center space-y-2">
-          <div className="text-3xl font-extrabold text-white font-mono">
+        <SpotlightCard className="glass-02-card rounded-2xl p-8 border border-white/5 text-center space-y-2">
+          <div className="text-display-lg text-white font-mono">
             <CountUp end={20} />+
           </div>
-          <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-            PROJECTS DELIVERED
-          </div>
+          <div className="mono-label text-gray-500">OPERATIONS DELIVERED</div>
         </SpotlightCard>
 
-        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 text-center space-y-2">
-          <div className="text-3xl font-extrabold text-white font-mono">
+        <SpotlightCard className="glass-02-card rounded-2xl p-8 border border-white/5 text-center space-y-2">
+          <div className="text-display-lg text-white font-mono">
             <CountUp end={12} />+
           </div>
-          <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-            CSIRT ACKNOWLEDGEMENTS
-          </div>
+          <div className="mono-label text-gray-500">CSIRT DISCLOSURES</div>
         </SpotlightCard>
 
-        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 text-center space-y-2">
-          <div className="text-3xl font-extrabold text-white font-mono">
-            <CountUp end={3} />+
+        <SpotlightCard className="glass-02-card rounded-2xl p-8 border border-white/5 text-center space-y-2">
+          <div className="text-display-lg text-white font-mono">
+            <CountUp end={4} />Y+
           </div>
-          <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-            YEARS RESEARCH EXPERIENCE
-          </div>
+          <div className="mono-label text-gray-500">FIELD EXPERIENCE</div>
         </SpotlightCard>
 
-        <SpotlightCard className="glass-panel-2 rounded-xl p-6 border border-white/5 text-center space-y-2">
-          <div className="text-3xl font-extrabold text-[#27E0FF] font-mono">
+        <SpotlightCard className="glass-02-card rounded-2xl p-8 border border-white/5 text-center space-y-2">
+          <div className="text-display-lg text-[#8AE8FF] font-mono">
             100%
           </div>
-          <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-            RESPONSIBLE DISCLOSURE
-          </div>
+          <div className="mono-label text-gray-500">RESPONSIBLE AUDIT</div>
         </SpotlightCard>
       </section>
 
-      {/* 4. FEATURED WORK SECTION */}
-      <section>
+      {/* 4. SELECTED OPERATIONS — Asymmetric Editorial Showcase */}
+      <section className="space-y-12">
         <SectionHeader
-          label="FEATURED CASE STUDIES"
-          title="Security Utilities & Systems Built from Scratch"
-          subtitle="Sanitized case studies mapping real architectural problems and security audits."
-          action={{ label: "VIEW ALL WORK", href: "/portfolio" }}
+          label="SEC.02 // SELECTED OPERATIONS"
+          title="Engineered Systems & Recon Scanners"
+          subtitle="Case studies mapping real architectural problems, security tools, and deployment results."
+          action={{ label: "ALL OPERATIONS", href: "/portfolio" }}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {portfolioProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        <div className="space-y-12">
+          {portfolioProjects.map((project, idx) => (
+            <SpotlightCard
+              key={project.id}
+              className="glass-02-card rounded-3xl p-8 md:p-12 border border-white/10 hover:border-[#8AE8FF]/30 transition-all duration-300"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className={`space-y-6 ${idx % 2 === 0 ? "lg:col-span-7" : "lg:col-span-7 lg:order-2"}`}>
+                  <div className="flex items-center gap-3">
+                    <span className="mono-label text-[10px] text-[#8AE8FF] bg-[#8AE8FF]/10 border border-[#8AE8FF]/20 px-3 py-1 rounded-full">
+                      {project.category}
+                    </span>
+                    <span className="font-mono text-xs text-gray-500">
+                      {project.projectDate.split("-")[0]}
+                    </span>
+                  </div>
+
+                  <h3 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+                    <Link href={`/portfolio/${project.slug}`} className="hover:text-[#8AE8FF] transition-colors inline-flex items-center gap-3">
+                      <span>{project.title}</span>
+                      <ArrowUpRight className="w-7 h-7 text-gray-500" />
+                    </Link>
+                  </h3>
+
+                  <p className="text-sm md:text-base text-gray-400 leading-relaxed font-light">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="font-mono text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-lg">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Technical Manifest Box */}
+                <div className={`glass-03-panel rounded-2xl p-6 border border-white/5 font-mono text-xs space-y-4 ${
+                  idx % 2 === 0 ? "lg:col-span-5" : "lg:col-span-5 lg:order-1"
+                }`}>
+                  <div className="border-b border-white/5 pb-3 text-gray-500 flex justify-between">
+                    <span>CASE_MANIFEST.LOG</span>
+                    <span className="text-[#8AE8FF]">VERIFIED</span>
+                  </div>
+                  <div className="space-y-2 text-gray-400">
+                    <div>CLIENT: {project.company}</div>
+                    <div>STATUS: PRODUCTION_READY</div>
+                    <div>SECURITY_AUDIT: COMPLIANT</div>
+                  </div>
+                  <div className="pt-2">
+                    <Link href={`/portfolio/${project.slug}`} className="text-[#8AE8FF] hover:underline">
+                      Read Technical Case Study &gt;
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </SpotlightCard>
           ))}
         </div>
       </section>
 
-      {/* 5. EXPERIENCE SNAPSHOT */}
-      <section className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12">
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#27E0FF] uppercase">
-            <Terminal className="w-3.5 h-3.5" />
-            <span>[ CAREER TIMELINE ]</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
-            Production Ownership & Systems Delivery
-          </h2>
-          <p className="text-sm text-gray-400 leading-relaxed max-w-sm">
-            Maintaining high-throughput databases, leading core technology choices, and automating security audits in deployment.
-          </p>
-          <div className="pt-2">
-            <Link
-              href="/experience"
-              className="inline-flex items-center gap-2 text-xs font-mono text-[#27E0FF] hover:text-white transition-colors group cursor-pointer"
-            >
-              <span>VIEW FULL SECURITY DOSSIER</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+      {/* 5. CAREER LEDGER */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="lg:col-span-4 space-y-6">
+          <SectionHeader
+            label="SEC.03 // FIELD EXPERIENCE"
+            title="Production Ownership Timeline"
+            subtitle="Leading architectural choices, maintaining databases, and automating security reconnaissance."
+          />
         </div>
 
-        {/* Roles List */}
-        <div className="space-y-6">
-          {roles.slice(0, 2).map((role, idx) => (
-            <SpotlightCard key={idx} className="glass-panel-2 rounded-xl p-6 border border-white/5 space-y-3">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <h3 className="text-base font-bold text-white">{role.title}</h3>
-                <span className="text-[10px] font-mono text-[#27E0FF] bg-[#27E0FF]/5 border border-[#27E0FF]/25 px-2.5 py-0.5 rounded-full">
+        <div className="lg:col-span-8 space-y-6">
+          {roles.map((role, idx) => (
+            <SpotlightCard key={idx} className="glass-02-card rounded-2xl p-8 border border-white/5 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-white">{role.title}</h3>
+                  <span className="font-mono text-xs text-gray-500">{role.company}</span>
+                </div>
+                <span className="font-mono text-xs text-[#8AE8FF] bg-[#8AE8FF]/10 border border-[#8AE8FF]/20 px-3 py-1 rounded-full">
                   {role.period}
                 </span>
               </div>
-              <div className="text-xs font-mono text-gray-400">{role.company}</div>
-              <ul className="space-y-2 text-xs text-gray-400 list-disc list-inside">
-                {role.details.slice(0, 2).map((detail, dIdx) => (
-                  <li key={dIdx} className="leading-relaxed">{detail}</li>
+              <ul className="space-y-3 text-xs sm:text-sm text-gray-400">
+                {role.details.map((detail, dIdx) => (
+                  <li key={dIdx} className="flex gap-3 leading-relaxed">
+                    <span className="text-[#8AE8FF] font-mono select-none">✦</span>
+                    <span>{detail}</span>
+                  </li>
                 ))}
               </ul>
             </SpotlightCard>
@@ -177,66 +238,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. VERIFIED SECURITY RECOGNITION ACKNOWLEDGEMENT */}
-      <section className="glass-panel-2 rounded-3xl p-8 md:p-12 relative overflow-hidden border border-white/5">
-        <div className="absolute inset-0 technical-grid opacity-10 pointer-events-none" />
-        
-        <div className="relative z-10 max-w-3xl space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400 tracking-wider">
-            <span>✓ VERIFIED DISCLOSURES</span>
-          </div>
+      {/* 6. VERIFIED CREDENTIAL ACKNOWLEDGEMENT */}
+      <section className="glass-02-card rounded-3xl p-8 md:p-16 relative overflow-hidden border border-white/10">
+        <div className="relative z-10 max-w-4xl space-y-8">
+          <span className="mono-label text-[#77E6A1] bg-[#77E6A1]/10 border border-[#77E6A1]/20 px-3 py-1 rounded-full">
+            ✓ INSTITUTIONAL ACKNOWLEDGEMENTS
+          </span>
 
-          <h2 className="text-2xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
-            Security Disclosures & Institutional Appreciations
+          <h2 className="text-display-lg text-white font-extrabold tracking-tight">
+            Responsible Security Disclosures
           </h2>
 
-          <p className="text-sm text-gray-400 leading-relaxed">
-            Responsible vulnerability disclosure is a core part of security hygiene. Reports filed through automated dorking reconnaissance engines like <b>BLH Hunter</b> have been acknowledged by NASA and multiple Indonesian ministries and governments.
+          <p className="text-base text-gray-400 leading-relaxed font-light max-w-2xl">
+            Vulnerabilities identified through tools like <b>BLH Hunter</b> have been formally acknowledged by NASA and multiple Indonesian regional ministries and public CSIRTs.
           </p>
 
-          <div className="flex flex-wrap gap-2 pt-2">
-            {securityRecognitions.slice(0, 6).map((org) => (
-              <span
-                key={org}
-                className="text-[10px] font-mono text-gray-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded-md hover:border-[#27E0FF]/30 transition-all duration-300"
-              >
+          <div className="flex flex-wrap gap-3 pt-2">
+            {securityRecognitions.map((org) => (
+              <span key={org} className="font-mono text-xs text-gray-300 bg-white/5 border border-white/10 px-4 py-2 rounded-xl">
                 {org}
               </span>
             ))}
-            <Link
-              href="/experience#awards"
-              className="text-[10px] font-mono text-[#27E0FF] bg-[#27E0FF]/5 border border-[#27E0FF]/25 px-3 py-1.5 rounded-md hover:bg-[#27E0FF] hover:text-white transition-all cursor-pointer"
-            >
-              + view all acknowledgements
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* 7. CONTACT CTA */}
-      <section className="text-center py-12 relative">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
-          <div className="w-[300px] h-[300px] rounded-full glow-bubble-blue filter blur-[80px]" />
-        </div>
-
-        <div className="relative z-10 space-y-6 max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Let's build something secure.
+      {/* 7. CONTACT CTA — DRAMATIC FULLSCREEN CLOSING */}
+      <section className="text-center py-20 relative glass-02-card rounded-3xl border border-white/10 p-12">
+        <div className="relative z-10 space-y-8 max-w-3xl mx-auto">
+          <h2 className="text-display-lg text-white font-extrabold tracking-tight uppercase">
+            HAVE A SYSTEM <br />
+            <span className="text-[#8AE8FF]">WORTH PROTECTING?</span>
           </h2>
-          <p className="text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
-            Need an implementation audit, a secure systems backend built, or a technical consultation? Start a node connection.
+          <p className="text-base text-gray-400 max-w-lg mx-auto font-light leading-relaxed">
+            Need an application penetration audit, secure backend architecture, or a technical consultation?
           </p>
-          <div className="pt-4">
+          <div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-[#0A6CFF] hover:bg-[#0052cc] text-white font-mono text-xs font-semibold tracking-wider transition-all shadow-[0_0_25px_rgba(10,108,255,0.3)] cursor-pointer"
+              data-cursor="TRANSMIT"
+              className="inline-flex items-center gap-3 px-8 py-5 rounded-xl bg-[#8AE8FF] text-[#07090D] font-mono text-xs font-bold tracking-wider hover:bg-white transition-all shadow-[0_0_35px_rgba(138,232,255,0.3)] cursor-pointer"
             >
-              <span>CONNECT WITH HAMMAD MATT</span>
+              <span>START A CONVERSATION</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
+
     </main>
   );
 }

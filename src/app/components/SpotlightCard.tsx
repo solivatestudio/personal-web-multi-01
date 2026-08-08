@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
 interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -26,20 +26,19 @@ export function SpotlightCard({ children, className = "", ...props }: SpotlightC
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsFocused(true)}
       onMouseLeave={() => setIsFocused(false)}
-      className={`spotlight-card relative overflow-hidden transition-all duration-300 ${className}`}
+      className={`specular-card relative overflow-hidden transition-all duration-300 ${className}`}
       style={{
-        // Define CSS Custom Properties for the spotlight gradient to use
         ["--mouse-x" as any]: `${coords.x}px`,
         ["--mouse-y" as any]: `${coords.y}px`,
       }}
       {...props}
     >
-      {/* Dynamic border highlighting that tracks mouse position */}
+      {/* Dynamic Refraction Specular Highlight */}
       {isFocused && (
         <div
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500"
           style={{
-            background: `radial-gradient(400px circle at ${coords.x}px ${coords.y}px, rgba(39, 224, 255, 0.2), transparent 45%)`,
+            background: `radial-gradient(350px circle at ${coords.x}px ${coords.y}px, rgba(138, 232, 255, 0.12), transparent 50%)`,
             padding: "1px",
             mask: "linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0)",
             WebkitMask: "linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0)",
